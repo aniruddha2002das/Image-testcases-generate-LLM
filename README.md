@@ -58,6 +58,7 @@ python app.py
 > The app will be available at `http://localhost:5000`.
 
 
+## Demo Picture
 ### This is front-end (Images are not uploaded)
 
 <img width="1438" alt="1" src="https://github.com/user-attachments/assets/d3a8d81d-7d8c-4769-babc-265a0fd70ff8">

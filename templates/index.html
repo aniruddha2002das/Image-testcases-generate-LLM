@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Test Cases</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        #output {
+            margin-top: 30px;
+        }
+
+        pre {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Generate Test Cases</h1>
+        <form id="test-case-form" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="context" class="form-label">Optional Context</label>
+                <textarea class="form-control" id="context" name="context" rows="3"
+                    placeholder="Enter additional context (optional)"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="screenshots" class="form-label">Upload Screenshots</label>
+                <input class="form-control" type="file" id="screenshots" name="screenshots" accept="image/*" multiple
+                    required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Generate Test Cases</button>
+            </div>
+        </form>
+
+        <div id="output" class="mt-5">
+            <h2>Generated Test Cases:</h2>
+            <div id="instructions-output"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#test-case-form').on('submit', function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: '/generate-test-cases',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    let instructions = response.instructions;
+
+
+                    let formattedOutput = `<pre>${instructions}</pre>`;
+                    $('#instructions-output').html(formattedOutput);
+                },
+                error: function (error) {
+                    alert('Error generating test cases. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

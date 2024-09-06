@@ -32,8 +32,8 @@ This project is a Testing Instructions Generator Tool that utilizes a multimodal
 ### Steps
 1. Clone the Repository
 ```
-git clone <repository-url>
-cd llm
+git clone git@github.com:aniruddha2002das/Image-testcases-generate-LLM.git
+cd image-testcases-generate-llm
 ```
 2. Create a Virtual Environment (optional but recommended)
 ```
